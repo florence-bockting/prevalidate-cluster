@@ -1,9 +1,9 @@
-"""Console script for prevalidate."""
+"""Console script for prevalidate-cluster."""
 
 import typer
 from rich.console import Console
 
-from prevalidate import utils
+from prevc import utils
 
 app = typer.Typer()
 console = Console()
@@ -11,9 +11,9 @@ console = Console()
 
 @app.command()
 def main() -> None:
-    """Console script for prevalidate."""
+    """Console script for prevalidate-cluster."""
     console.print(
-        "Replace this message by putting your code into prevalidate.cli.main"
+        "Replace this message by putting your code into prevc.cli.main"
     )
     console.print("See Typer documentation at https://typer.tiangolo.com/")
     utils.do_something_useful()

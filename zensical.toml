@@ -1,8 +1,8 @@
 [project]
-site_name = "cluster_validator"
-#site_url = "https://florence-bockting.github.io/prevalidate/"
-repo_url = "https://github.com/florence-bockting/prevalidate"
-repo_name = "florence-bockting/prevalidate"
+site_name = "prevalidate-cluster"
+#site_url = "https://florence-bockting.github.io/prevalidate-cluster/"
+repo_url = "https://github.com/florence-bockting/prevalidate-cluster"
+repo_name = "florence-bockting/prevalidate-cluster"
 
 nav = [
   { "Home" = "index.md" },

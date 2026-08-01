@@ -1,5 +1,5 @@
 """
-Data structures shared across prevalidate: point-in-time samples of the
+Data structures shared across prevc: point-in-time samples of the
 process tree, individual findings ("this looks like a problem"), and the
 aggregated Report returned to the user.
 """
@@ -65,7 +65,7 @@ class Report:
     def summary(self) -> str:
         gb = self.peak_rss_bytes / 1e9
         lines = [
-            f"prevalidate report for: {self.command}",
+            f"prevc report for: {self.command}",
             (
                 f"  exit code:            {self.exit_code}"
                 f"{' (killed: timeout)' if self.timed_out else ''}"

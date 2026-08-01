@@ -1,4 +1,4 @@
-# Justfile for prevalidate
+# Justfile for prevalidate-cluster
 
 # Show available commands
 list:

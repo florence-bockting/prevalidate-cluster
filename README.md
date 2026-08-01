@@ -1,17 +1,20 @@
-# cluster_validator
+# prevalidate-cluster
 
-![PyPI version](https://img.shields.io/pypi/v/prevalidate.svg)
+![PyPI version](https://img.shields.io/pypi/v/prevalidate-cluster.svg)
 
 A language-agnostic dry-run tool that users can run on a cluster before
 `sbatch`, that profiles their task and flags cluster-unfriendly behavior
 
-* [GitHub](https://github.com/florence-bockting/prevalidate/) 
+* [GitHub](https://github.com/florence-bockting/prevalidate-cluster/) 
 <!--
-| [PyPI](https://pypi.org/project/prevalidate/) | [Documentation](https://florence-bockting.github.io/prevalidate/)
+| [PyPI](https://pypi.org/project/prevalidate-cluster/) | [Documentation](https://florence-bockting.github.io/prevalidate-cluster/)
 -->
 * Created by [Florence Bockting](https://florence-bockting.github.io) | 
 GitHub [@florence-bockting](https://github.com/florence-bockting)
 * MIT License
+
+Install with `pip install prevalidate-cluster` (or `uv add prevalidate-cluster`),
+then import as `prevc`.
 
 ## Features
 
@@ -22,7 +25,7 @@ GitHub [@florence-bockting](https://github.com/florence-bockting)
 Documentation is built with [Zensical](https://zensical.org/) and deployed to
 GitHub Pages.
 
-* **Live site:** https://florence-bockting.github.io/prevalidate/
+* **Live site:** https://florence-bockting.github.io/prevalidate-cluster/
 * **Preview locally:** `just docs-serve` (serves at http://localhost:8000)
 * **Build:** `just docs-build`
 
@@ -38,15 +41,15 @@ To set up for local development:
 
 ```bash
 # Clone your fork
-git clone git@github.com:your_username/prevalidate.git
-cd prevalidate
+git clone git@github.com:your_username/prevalidate-cluster.git
+cd prevalidate-cluster
 
 # Install in editable mode with live updates
 uv tool install --editable .
 ```
 
 This installs the CLI globally but with live updates - any changes you make to
-the source code are immediately available when you run `prevalidate`.
+the source code are immediately available when you run `prevc`.
 
 Run tests:
 
@@ -62,7 +65,7 @@ just qa
 
 ## Author
 
-cluster_validator was created in 2026 by Florence Bockting.
+prevalidate-cluster was created in 2026 by Florence Bockting.
 
 Built with [Cookiecutter](https://github.com/cookiecutter/cookiecutter) and
 the [audreyfeldroy/cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage) project template.

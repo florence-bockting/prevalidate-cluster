@@ -1,7 +1,7 @@
 """
 ProcessTreeMonitor polls a process and all of its descendants at a fixed
 interval and records memory, thread, file-handle, and network-connection
-usage over time. This is what makes prevalidate language-agnostic: it
+usage over time. This is what makes prevc language-agnostic: it
 watches the OS-level process tree, not the language runtime, so it works
 the same whether the wrapped command is Python, R, MATLAB, a compiled
 binary, or an MPI launcher.

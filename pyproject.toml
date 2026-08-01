@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "prevalidate"
+name = "prevalidate-cluster"
 version = "0.1.0"
 description = """
     A language-agnostic dry-run tool that users can run on a cluster before 
@@ -52,13 +52,13 @@ docs = [
 ]
 
 [project.urls]
-bugs = "https://github.com/florence-bockting/prevalidate/issues"
-changelog = "https://github.com/florence-bockting/prevalidate/releases"
-# documentation = "https://florence-bockting.github.io/prevalidate/"
-homepage = "https://github.com/florence-bockting/prevalidate"
+bugs = "https://github.com/florence-bockting/prevalidate-cluster/issues"
+changelog = "https://github.com/florence-bockting/prevalidate-cluster/releases"
+# documentation = "https://florence-bockting.github.io/prevalidate-cluster/"
+homepage = "https://github.com/florence-bockting/prevalidate-cluster"
 
 [project.scripts]
-prevalidate = "prevalidate.cli:app"
+prevc = "prevc.cli:app"
 
 [tool.ty]
 # All rules are enabled as "error" by default; no need to specify unless overriding.
@@ -100,6 +100,9 @@ exclude_also = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/prevc"]
 
 [tool.uv]
 package = true

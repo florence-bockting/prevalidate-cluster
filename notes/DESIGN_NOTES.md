@@ -1,4 +1,4 @@
-# `prevalidate` — pre-submission dry-run diagnostics for Slurm cluster jobs
+# `prevalidate-cluster` (`prevc`) — pre-submission dry-run diagnostics for Slurm cluster jobs
 
 Status: early concept / working code sketch
 Author: (fill in)
@@ -79,7 +79,7 @@ recurring support-ticket-generating problem.
 ## 4. Architecture (as sketched)
 
 ```
-prevalidate/
+prevc/
 ├── __init__.py     # public API: prevalidate()
 ├── core.py         # subprocess launch + monitor + checks orchestration
 ├── monitor.py       # ProcessTreeMonitor: psutil-based sampling thread
@@ -90,7 +90,7 @@ examples/
 └── memory_hog_demo.py           # reproduces memory over-allocation
 ```
 
-Core flow (`prevalidate.core.prevalidate`):
+Core flow (`prevc.core.prevalidate`):
 
 1. Launch `command` via `subprocess.Popen` (shell string or argv list).
 2. Start a background thread (`ProcessTreeMonitor`) that polls every

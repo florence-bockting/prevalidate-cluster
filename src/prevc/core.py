@@ -51,7 +51,7 @@ def prevalidate(
 
     Parameters mirroring Slurm allocation flags (cpus_allocated,
     mem_allocated_gb, gpu_allocated) are optional but strongly recommended:
-    without them, prevalidate can only report *what happened*, not whether
+    without them, prevc can only report *what happened*, not whether
     it fits your intended #SBATCH request.
     """
     is_shell = isinstance(command, str)
