@@ -1,28 +1,24 @@
 # prevalidate-cluster
-
 ![PyPI version](https://img.shields.io/pypi/v/prevalidate-cluster.svg)
 
-A language-agnostic dry-run tool that users can run on a cluster before
-`sbatch`, that profiles their task and flags cluster-unfriendly behavior
-
-* [GitHub](https://github.com/florence-bockting/prevalidate-cluster/) 
-<!--
-| [PyPI](https://pypi.org/project/prevalidate-cluster/) | [Documentation](https://florence-bockting.github.io/prevalidate-cluster/)
--->
-* Created by [Florence Bockting](https://florence-bockting.github.io) | 
-GitHub [@florence-bockting](https://github.com/florence-bockting)
-* MIT License
-
 > [!WARNING]
-> **Prototype / early development.** This package is not ready for production
+> **Prototype / early development.**
+> 
+> This package is not ready for production
 > use. APIs, CLI, and behavior may change without notice.
 
-Install with `pip install prevalidate-cluster` (or `uv add prevalidate-cluster`),
-then import as `prevc`.
+## Description
+A language-agnostic dry-run tool that users can 
+run on a cluster before `sbatch`, that profiles their task and flags 
+cluster-unfriendly behavior
+
+## Installation
+
+* In progress
 
 ## Features
 
-* TODO
+* In progress
 
 ## Documentation
 
