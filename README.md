@@ -13,6 +13,10 @@ A language-agnostic dry-run tool that users can run on a cluster before
 GitHub [@florence-bockting](https://github.com/florence-bockting)
 * MIT License
 
+> [!WARNING]
+> **Prototype / early development.** This package is not ready for production
+> use. APIs, CLI, and behavior may change without notice.
+
 Install with `pip install prevalidate-cluster` (or `uv add prevalidate-cluster`),
 then import as `prevc`.
 
