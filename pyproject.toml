@@ -5,7 +5,10 @@ build-backend = "hatchling.build"
 [project]
 name = "prevalidate"
 version = "0.1.0"
-description = "A language-agnostic dry-run tool that users can run on a cluster before `sbatch`, that profiles their task and flags cluster-unfriendly behavior"
+description = """
+    A language-agnostic dry-run tool that users can run on a cluster before 
+    `sbatch`, that profiles their task and flags cluster-unfriendly behavior.
+"""
 readme = "README.md"
 authors = [
   {name = "Florence Bockting", email = "florence.bockting@aalto.fi"}
@@ -49,7 +52,7 @@ docs = [
 [project.urls]
 bugs = "https://github.com/florence-bockting/prevalidate/issues"
 changelog = "https://github.com/florence-bockting/prevalidate/releases"
-documentation = "https://florence-bockting.github.io/prevalidate/"
+# documentation = "https://florence-bockting.github.io/prevalidate/"
 homepage = "https://github.com/florence-bockting/prevalidate"
 
 [project.scripts]
@@ -61,7 +64,7 @@ prevalidate = "prevalidate.cli:app"
 # rules.TY015 = "warn"  # For invalid-argument-type, warn instead of error.
 
 [tool.ruff]
-line-length = 120
+line-length = 80
 
 [tool.ruff.lint]
 select = [
