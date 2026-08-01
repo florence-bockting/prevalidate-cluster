@@ -8,7 +8,8 @@ on:
   schedule:
     - cron: '0 6 * * 1'
 
-permissions: contents: read
+permissions:
+  contents: read
 
 jobs:
   analyze:
@@ -18,6 +19,8 @@ jobs:
       security-events: write
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@e4fba868fa4b1b91e1fdab776edc8cfbe6e9fb81 # v4.37.3
