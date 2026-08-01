@@ -2,20 +2,13 @@ from __future__ import annotations
 
 import subprocess
 import time
-from typing import List, Optional, Sequence, Union
+from collections.abc import Sequence
 
+from .checks import ALL_CHECKS, Allocation
 from .monitor import ProcessTreeMonitor
-from .report import Report, Snapshot
-from .checks import (
-    check_memory,
-    check_process_thread_oversubscription,
-    check_gpu,
-    check_network,
-    check_open_files,
-    check_runtime,
-)
+from .report import Report
 
-CommandLike = Union[str, Sequence[str]]
+CommandLike = str | Sequence[str]
 
 
 def _aggregate(report: Report) -> None:
@@ -25,22 +18,25 @@ def _aggregate(report: Report) -> None:
     report.peak_n_processes = max(s.n_processes for s in report.snapshots)
     report.peak_total_threads = max(s.total_threads for s in report.snapshots)
     report.peak_threads_single_process = max(
-        (max(s.threads_per_process) if s.threads_per_process else 0) for s in report.snapshots
+        (max(s.threads_per_process) if s.threads_per_process else 0)
+        for s in report.snapshots
     )
     report.peak_open_files = max(s.open_files for s in report.snapshots)
-    report.peak_external_connections = max(s.external_connections for s in report.snapshots)
+    report.peak_external_connections = max(
+        s.external_connections for s in report.snapshots
+    )
     report.peak_gpu_mem_bytes = max(s.gpu_mem_bytes for s in report.snapshots)
 
 
 def prevalidate(
     command: CommandLike,
     *,
-    cwd: Optional[str] = None,
-    env: Optional[dict] = None,
+    cwd: str | None = None,
+    env: dict | None = None,
     timeout: float = 60.0,
     sample_interval: float = 0.2,
-    cpus_allocated: Optional[int] = None,
-    mem_allocated_gb: Optional[float] = None,
+    cpus_allocated: int | None = None,
+    mem_allocated_gb: float | None = None,
     gpu_allocated: bool = False,
     print_report: bool = True,
 ) -> Report:
@@ -95,15 +91,14 @@ def prevalidate(
     )
     _aggregate(report)
 
-    for check_fn, kwargs in [
-        (check_memory, dict(cpus_allocated=cpus_allocated, mem_allocated_gb=mem_allocated_gb)),
-        (check_process_thread_oversubscription, dict(cpus_allocated=cpus_allocated)),
-        (check_gpu, dict(gpu_allocated=gpu_allocated)),
-        (check_network, dict()),
-        (check_open_files, dict()),
-        (check_runtime, dict(timeout_used=timeout)),
-    ]:
-        report.findings.extend(check_fn(report, **kwargs))
+    alloc = Allocation(
+        cpus=cpus_allocated,
+        mem_gb=mem_allocated_gb,
+        gpu=gpu_allocated,
+        timeout_s=timeout,
+    )
+    for check_fn in ALL_CHECKS:
+        report.findings.extend(check_fn(report, alloc))
 
     if print_report:
         print(report.summary())

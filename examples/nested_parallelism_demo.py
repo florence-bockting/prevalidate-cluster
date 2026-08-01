@@ -1,5 +1,6 @@
 """Simulates the classic mistake: N worker processes, each also opening
 M threads internally (e.g. multiprocessing + a threaded BLAS)."""
+
 import multiprocessing as mp
 import threading
 import time
@@ -10,7 +11,9 @@ def busy(_):
 
 
 def worker(n_threads):
-    threads = [threading.Thread(target=busy, args=(None,)) for _ in range(n_threads)]
+    threads = [
+        threading.Thread(target=busy, args=(None,)) for _ in range(n_threads)
+    ]
     for t in threads:
         t.start()
     for t in threads:

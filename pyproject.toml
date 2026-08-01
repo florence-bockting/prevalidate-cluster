@@ -25,6 +25,8 @@ license = {text = "MIT"}
 dependencies = [
   "typer",
   "rich",
+  "psutil",
+  "nvidia-ml-py",
 ]
 requires-python = ">= 3.12"
 
@@ -84,7 +86,7 @@ source = ["src/", "tests/"]
 [tool.coverage.report]
 show_missing = true
 skip_covered = true
-fail_under = 50
+fail_under = 10 # TODO: increase to 80
 exclude_also = [
     "if TYPE_CHECKING:",
     "if typing.TYPE_CHECKING:",

@@ -52,3 +52,9 @@ site/
 # IDE files
 # .idea/
 # .vscode/
+
+# Internal notes
+notes/*
+
+# lock files
+uv.lock

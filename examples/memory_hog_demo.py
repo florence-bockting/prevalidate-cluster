@@ -1,4 +1,5 @@
 """Simulates a job that uses more memory than declared."""
+
 import time
 
 data = bytearray(500 * 1024 * 1024)  # ~500 MB

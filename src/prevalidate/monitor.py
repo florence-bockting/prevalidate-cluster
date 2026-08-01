@@ -6,12 +6,12 @@ watches the OS-level process tree, not the language runtime, so it works
 the same whether the wrapped command is Python, R, MATLAB, a compiled
 binary, or an MPI launcher.
 """
+
 from __future__ import annotations
 
 import ipaddress
 import threading
 import time
-from typing import List, Optional
 
 import psutil
 
@@ -19,6 +19,7 @@ from .report import Snapshot
 
 try:
     import pynvml
+
     _HAVE_NVML = True
 except ImportError:
     _HAVE_NVML = False
@@ -34,8 +35,8 @@ def _is_external(ip: str) -> bool:
 
 def _gpu_mem_bytes() -> int:
     """Best-effort total GPU memory used, summed across visible GPUs.
-    Returns 0 if NVML/pynvml isn't available (e.g. no GPU node, no driver).
-    Swap/extend this for ROCm (AMD) as needed.
+    Returns 0 if pynvml/nvidia-ml-py isn't available (e.g. no GPU node,
+    no driver). Swap/extend this for ROCm (AMD) as needed.
     """
     if not _HAVE_NVML:
         return 0
@@ -55,9 +56,9 @@ class ProcessTreeMonitor:
     def __init__(self, pid: int, interval: float = 0.2):
         self.pid = pid
         self.interval = interval
-        self.snapshots: List[Snapshot] = []
+        self.snapshots: list[Snapshot] = []
         self._stop = threading.Event()
-        self._thread: Optional[threading.Thread] = None
+        self._thread: threading.Thread | None = None
         self._t0 = time.monotonic()
 
     def start(self) -> None:
@@ -77,7 +78,7 @@ class ProcessTreeMonitor:
                 self.snapshots.append(snap)
             self._stop.wait(self.interval)
 
-    def _sample(self) -> Optional[Snapshot]:
+    def _sample(self) -> Snapshot | None:
         try:
             root = psutil.Process(self.pid)
         except psutil.NoSuchProcess:
@@ -104,7 +105,11 @@ class ProcessTreeMonitor:
                 for c in p.net_connections(kind="inet"):
                     if c.raddr and _is_external(c.raddr.ip):
                         external_conns += 1
-            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            except (
+                psutil.NoSuchProcess,
+                psutil.AccessDenied,
+                psutil.ZombieProcess,
+            ):
                 continue
 
         return Snapshot(
